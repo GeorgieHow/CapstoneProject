@@ -3,29 +3,27 @@ package com.example.FoodProjectBackend.entity;
 import jakarta.persistence.*;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "restaurants")
 public class Restaurant {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String name;
-    private String location;
-    private Double rating;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ElementCollection
-    @CollectionTable(name = "restaurant_menu", joinColumns = @JoinColumn(name = "restaurant_id"))
-    @Column(name = "menu_item") 
-    private List<String> menu;
-    
-    public Restaurant() {
-    	
-    }
-    
+	private String name;
+	private String location;
+	private Double rating;
+
+	@ElementCollection
+	@CollectionTable(name = "restaurant_menu", joinColumns = @JoinColumn(name = "restaurant_id"))
+	@Column(name = "menu_item")
+	private List<String> menu;
+
+	public Restaurant() {
+
+	}
+
 	public Restaurant(Long id, String name, String location, Double rating, List<String> menu) {
 		this.id = id;
 		this.name = name;
