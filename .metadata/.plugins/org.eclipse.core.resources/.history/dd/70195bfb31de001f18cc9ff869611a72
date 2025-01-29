@@ -1,0 +1,17 @@
+package com.example.FoodProjectBackend.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.FoodProjectBackend.repo.OrderRepo;
+
+@Service
+public class OrderService {
+
+	private final OrderRepo orderRepo;
+	
+	public OrderService(OrderRepo orderRepo) {
+		this.orderRepo = orderRepo;
+	}
+	
+	
+}

@@ -1,0 +1,21 @@
+package com.example.FoodProjectBackend.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.FoodProjectBackend.entity.Restaurant;
+
+@Service
+public class RestaurantService {
+
+	private final RestaurantRepo restaurantRepo;
+	
+	public RestaurantService(RestaurantService restaurantService) {
+		this.restaurantService = restaurantService;
+	}
+	
+	public List<Restaurant> getAllRestaurants() {
+		return restaurantService.findAll();
+	}
+}

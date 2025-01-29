@@ -1,0 +1,22 @@
+package com.example.FoodProjectBackend.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.FoodProjectBackend.entity.Order;
+import com.example.FoodProjectBackend.repo.OrderRepo;
+
+@Service
+public class OrderService {
+
+	private final OrderRepo orderRepo;
+	
+	public OrderService(OrderRepo orderRepo) {
+		this.orderRepo = orderRepo;
+	}
+	
+	public List<Order> getAllOrders() {
+		return orderRepo.findAll();
+	}
+}

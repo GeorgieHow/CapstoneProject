@@ -1,0 +1,2 @@
+INSERT INTO users (username, password, email) VALUES ('john_doe', 'password123', 'john@example.com');
+INSERT INTO restaurants (name, location, rating) VALUES ('Pizza Palace', 'Downtown', 4.5);
