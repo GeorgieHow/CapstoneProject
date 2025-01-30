@@ -10,7 +10,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private LocalDateTime orderDate;
     private Double totalPrice;
@@ -23,16 +23,19 @@ public class Order {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @ElementCollection
-    @CollectionTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
-    @Column(name = "menu_item")
-    private List<String> orderedItems; 
+    @ManyToMany
+    @JoinTable(
+        name = "order_menu_items",
+        joinColumns = @JoinColumn(name = "order_id"),
+        inverseJoinColumns = @JoinColumn(name = "menu_item_id")
+    )
+    private List<MenuItem> orderedItems; 
 
     public Order() {
     }
 
-    public Order(Long id, LocalDateTime orderDate, Double totalPrice, User user, Restaurant restaurant,
-			List<String> orderedItems) {
+    public Order(int id, LocalDateTime orderDate, Double totalPrice, User user, Restaurant restaurant,
+			List<MenuItem> orderedItems) {
 		this.id = id;
 		this.orderDate = orderDate;
 		this.totalPrice = totalPrice;
@@ -41,7 +44,7 @@ public class Order {
 		this.orderedItems = orderedItems;
 	}
 
-	public Order(LocalDateTime orderDate, Double totalPrice, User user, Restaurant restaurant, List<String> orderedItems) {
+	public Order(LocalDateTime orderDate, Double totalPrice, User user, Restaurant restaurant, List<MenuItem> orderedItems) {
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.user = user;
@@ -49,11 +52,11 @@ public class Order {
         this.orderedItems = orderedItems;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -89,11 +92,11 @@ public class Order {
         this.restaurant = restaurant;
     }
 
-    public List<String> getOrderedItems() {
+    public List<MenuItem> getOrderedItems() {
         return orderedItems;
     }
 
-    public void setOrderedItems(List<String> orderedItems) {
+    public void setOrderedItems(List<MenuItem> orderedItems) {
         this.orderedItems = orderedItems;
     }
 

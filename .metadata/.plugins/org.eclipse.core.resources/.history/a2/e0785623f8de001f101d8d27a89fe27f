@@ -1,0 +1,52 @@
+package com.example.FoodProjectBackend.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.example.FoodProjectBackend.entity.MenuItem;
+import com.example.FoodProjectBackend.entity.Restaurant;
+import com.example.FoodProjectBackend.repo.MenuItemRepo;
+
+@Service
+public class MenuItemService {
+
+    private final MenuItemRepo menuItemRepo;
+
+    public MenuItemService(MenuItemRepo menuItemRepo) {
+        this.menuItemRepo = menuItemRepo;
+    }
+
+    public List<MenuItem> getAllMenuItems() {
+        return menuItemRepo.findAll();
+    }
+
+    public Optional<MenuItem> getMenuItemById(Long id) {
+        return menuItemRepo.findById(id);
+    }
+
+    public List<MenuItem> getMenuItemsByRestaurant(Restaurant restaurant) {
+        return menuItemRepo.findByRestaurant(restaurant);
+    }
+
+    public MenuItem createMenuItem(MenuItem menuItem) {
+        return menuItemRepo.save(menuItem);
+    }
+
+    public Optional<MenuItem> updateMenuItem(Long id, MenuItem menuItemDetails) {
+        return menuItemRepo.findById(id).map(menuItem -> {
+            menuItem.setName(menuItemDetails.getName());
+            menuItem.setPrice(menuItemDetails.getPrice());
+            return menuItemRepo.save(menuItem);
+        });
+    }
+
+    public boolean deleteMenuItem(Long id) {
+        if (menuItemRepo.existsById(id)) {
+            menuItemRepo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+}

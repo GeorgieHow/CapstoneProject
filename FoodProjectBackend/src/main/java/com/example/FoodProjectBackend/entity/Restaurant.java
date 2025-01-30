@@ -3,28 +3,29 @@ package com.example.FoodProjectBackend.entity;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "restaurants")
+@JsonIgnoreProperties({"menu"})
 public class Restaurant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 
 	private String name;
 	private String location;
 	private Double rating;
 
-	@ElementCollection
-	@CollectionTable(name = "restaurant_menu", joinColumns = @JoinColumn(name = "restaurant_id"))
-	@Column(name = "menu_item")
-	private List<String> menu;
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<MenuItem> menu;
 
 	public Restaurant() {
 
 	}
 
-	public Restaurant(Long id, String name, String location, Double rating, List<String> menu) {
+	public Restaurant(int id, String name, String location, Double rating, List<MenuItem> menu) {
 		this.id = id;
 		this.name = name;
 		this.location = location;
@@ -32,18 +33,18 @@ public class Restaurant {
 		this.menu = menu;
 	}
 
-	public Restaurant(String name, String location, Double rating, List<String> menu, List<Order> orders) {
+	public Restaurant(String name, String location, Double rating, List<MenuItem> menu, List<Order> orders) {
 		this.name = name;
 		this.location = location;
 		this.rating = rating;
 		this.menu = menu;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -71,11 +72,11 @@ public class Restaurant {
 		this.rating = rating;
 	}
 
-	public List<String> getMenu() {
+	public List<MenuItem> getMenu() {
 		return menu;
 	}
 
-	public void setMenu(List<String> menu) {
+	public void setMenu(List<MenuItem> menu) {
 		this.menu = menu;
 	}
 

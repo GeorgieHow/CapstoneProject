@@ -1,0 +1,105 @@
+package com.example.FoodProjectBackend.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime orderDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    @ManyToMany
+    @JoinTable(
+        name = "order_items",
+        joinColumns = @JoinColumn(name = "order_id"),
+        inverseJoinColumns = @JoinColumn(name = "menu_item_id")
+    )
+    
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<MenuItem> orderedItems;
+
+    private double totalPrice;
+
+    public Order() {
+    }
+
+    public Order(LocalDateTime orderDate, User user, Restaurant restaurant, List<MenuItem> orderedItems) {
+        this.orderDate = orderDate;
+        this.user = user;
+        this.restaurant = restaurant;
+        this.orderedItems = orderedItems;
+        this.totalPrice = calculateTotalPrice();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public List<MenuItem> getOrderedItems() {
+        return orderedItems;
+    }
+
+    public void setOrderedItems(List<MenuItem> orderedItems) {
+        this.orderedItems = orderedItems;
+        this.totalPrice = calculateTotalPrice();  // Recalculate total price when items change
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    private Double calculateTotalPrice() {
+        return orderedItems.stream()
+                .mapToDouble(MenuItem::getPrice)
+                .sum();
+    }
+
+    @Override
+    public String toString() {
+        return "Order [id=" + id + ", orderDate=" + orderDate + ", user=" + user
+                + ", restaurant=" + restaurant + ", orderedItems=" + orderedItems + ", totalPrice=" + totalPrice + "]";
+    }
+}
