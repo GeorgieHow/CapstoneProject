@@ -7,9 +7,11 @@
 
     <div *ngIf="restaurants.length > 0">
         <div *ngFor="let restaurant of restaurants" class="restaurant-card">
-            <h3>{{ restaurant.name }}</h3>
-            <p><strong>Location:</strong> {{ restaurant.location }}</p>
-            <p><strong>Rating:</strong> {{ restaurant.rating }} / 5</p>
+            <div class="restaurant-container">
+                <a [routerLink]="['/restaurants', restaurant.id]">
+                    <app-restaurant [restaurant]="restaurant"></app-restaurant>
+                </a>
+            </div>
         </div>
     </div>
 </div>

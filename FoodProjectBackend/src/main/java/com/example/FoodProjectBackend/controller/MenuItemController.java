@@ -3,6 +3,7 @@ package com.example.FoodProjectBackend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.FoodProjectBackend.entity.MenuItem;
+import com.example.FoodProjectBackend.entity.Restaurant;
 import com.example.FoodProjectBackend.service.MenuItemService;
+import com.example.FoodProjectBackend.service.RestaurantService;
 
 @RestController
 @RequestMapping("/api/menu-items")
@@ -25,9 +29,13 @@ public class MenuItemController {
 
     @Autowired
     private final MenuItemService menuItemService;
+    
+    @Autowired
+    private final RestaurantService restaurantService;
 
-    public MenuItemController(MenuItemService menuItemService) {
+    public MenuItemController(MenuItemService menuItemService, RestaurantService restaurantService) {
         this.menuItemService = menuItemService;
+        this.restaurantService = restaurantService;
     }
 
     @GetMapping
@@ -40,6 +48,14 @@ public class MenuItemController {
         return menuItemService.getMenuItemById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/restaurant/{restaurantId}")
+    public List<MenuItem> getMenuItemsByRestaurant(@PathVariable int restaurantId) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
+
+        return menuItemService.getMenuItemsByRestaurant(restaurant);
     }
 
     @PostMapping

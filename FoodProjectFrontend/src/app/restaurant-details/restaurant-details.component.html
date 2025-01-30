@@ -1,0 +1,21 @@
+<div class="restaurant-details" *ngIf="restaurant">
+    <h1>{{ restaurant.name }}</h1>
+    <p>{{ restaurant.location }}</p>
+    <p>{{ restaurant.rating }}</p>
+</div>
+
+<div class="separator"></div>
+
+<div class="menu">
+    <h1>Menu</h1>
+    <ul>
+        <li *ngFor="let item of menuItems">
+            <span>{{ item.name }}</span>
+            <span class="price">{{ item.price | currency:'GBP' }}</span>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <button (click)="goBack()">Back</button>
+</div>
