@@ -7,6 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,14 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    RestaurantComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
