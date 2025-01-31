@@ -7,4 +7,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnoreProperties"/>
+    <fullyQualifiedTypeName name="com.example.FoodProjectBackend.entity.Restaurant"/>
+    <fullyQualifiedTypeName name="com.example.FoodProjectBackend.service.RestaurantService"/>
 </qualifiedTypeNameHistroy>
