@@ -2,7 +2,7 @@
     <h1 class="restaurant-list-title">Restaurants</h1>
 
     <div>
-        <button *ngIf="isLoggedIn" class="btn-primary">Add New Restaurant</button>
+        <button *ngIf="isLoggedIn" class="btn-primary" [routerLink]="['/add-restaurant']">Add New Restaurant</button>
     </div>
 
     <div *ngIf="restaurants.length === 0">
