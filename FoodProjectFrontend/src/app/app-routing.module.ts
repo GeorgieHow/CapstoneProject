@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'restaurants', component: RestaurantListComponent },
   {path:'restaurants/:id', component:RestaurantDetailsComponent},
-  { path: 'add-restaurant', component: AddRestaurantComponent, canActivate: [authGuard] },
+  {path:'add-restaurant', component: AddRestaurantComponent, canActivate: [authGuard]},
 
 ];
 

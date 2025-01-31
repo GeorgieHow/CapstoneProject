@@ -16,7 +16,7 @@
                     <app-restaurant [restaurant]="restaurant"></app-restaurant>
                 </a>
                 <button style="margin-right: 10px;" class="btn-primary" *ngIf="isLoggedIn">Edit</button>
-                <button *ngIf="isLoggedIn" class="btn-primary">Delete</button>
+                <button *ngIf="isLoggedIn" class="btn-primary" (click)="deleteRestaurant(restaurant.id)">Delete</button>
             </div>
         </div>
     </div>

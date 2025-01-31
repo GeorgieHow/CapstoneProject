@@ -19,14 +19,32 @@ export class RestaurantListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadRestaurants();
+  }
+
+  loadRestaurants(): void {
     this.restaurantService.getAllRestaurants().subscribe(
       (restaurants) => {
-        console.log('Fetched restaurants:', restaurants);
         this.restaurants = restaurants;
+        console.log('Fetched restaurants:', restaurants);
       },
       (error) => {
         console.error('Error fetching restaurants:', error);
       }
     );
+  }
+
+  deleteRestaurant(id: number): void {
+    if (confirm('Are you sure you want to delete this restaurant?')) {
+      this.restaurantService.deleteRestaurant(id).subscribe(
+        () => {
+          console.log('Restaurant deleted successfully');
+          this.loadRestaurants(); 
+        },
+        (error) => {
+          console.error('Error deleting restaurant:', error);
+        }
+      );
+    }
   }
 }
