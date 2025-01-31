@@ -1,6 +1,10 @@
 <div>
     <h1 class="restaurant-list-title">Restaurants</h1>
 
+    <div>
+        <button *ngIf="isLoggedIn" class="btn-primary">Add New Restaurant</button>
+    </div>
+
     <div *ngIf="restaurants.length === 0">
         <p>No restaurants available.</p>
     </div>
@@ -11,6 +15,8 @@
                 <a [routerLink]="['/restaurants', restaurant.id]">
                     <app-restaurant [restaurant]="restaurant"></app-restaurant>
                 </a>
+                <button style="margin-right: 10px;" class="btn-primary" *ngIf="isLoggedIn">Edit</button>
+                <button *ngIf="isLoggedIn" class="btn-primary">Delete</button>
             </div>
         </div>
     </div>

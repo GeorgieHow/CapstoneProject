@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { Restaurant } from '../model/restaurant';
 import { RestaurantService } from '../service/restaurant.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -11,10 +12,11 @@ import { RestaurantService } from '../service/restaurant.service';
 })
 export class RestaurantListComponent implements OnInit {
   restaurants: Restaurant[] = [];
-
-  constructor(
-    private restaurantService: RestaurantService,
-  ) { }
+  isLoggedIn = false;
+  
+  constructor(private restaurantService: RestaurantService, private authService: AuthService) {
+    this.authService.isLoggedIn.subscribe(status => this.isLoggedIn = status);
+  }
 
   ngOnInit(): void {
     this.restaurantService.getAllRestaurants().subscribe(

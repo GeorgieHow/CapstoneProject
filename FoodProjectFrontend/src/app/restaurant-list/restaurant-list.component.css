@@ -48,4 +48,19 @@
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  .btn-primary {
+    padding: 10px;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #428953;
 }

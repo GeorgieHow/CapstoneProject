@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 import { LoginComponent } from './login/login.component';
-import { OrderListComponent } from './order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { OrderListComponent } from './order-list/order-list.component';
     RestaurantComponent,
     RestaurantDetailsComponent,
     LoginComponent,
-    OrderListComponent
   ],
   imports: [
     BrowserModule,
