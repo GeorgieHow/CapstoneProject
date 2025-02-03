@@ -4,6 +4,7 @@ import { RestaurantService } from '../service/restaurant.service';
 import { MenuDetailsService } from '../service/menu-details.service';
 import { Restaurant } from '../model/restaurant';
 import { MenuItem } from '../model/menu-item';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -15,13 +16,17 @@ export class RestaurantDetailsComponent implements OnInit {
   restaurantId: string | null = null;
   restaurant: Restaurant | null = null;
   menuItems: MenuItem[] = [];
+  isLoggedIn = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private restaurantService: RestaurantService,
-    private menuDetailsService: MenuDetailsService
-  ) {}
+    private menuDetailsService: MenuDetailsService,
+    private authService: AuthService
+  ) {
+    this.authService.isLoggedIn.subscribe(status => this.isLoggedIn = status);
+  }
 
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.paramMap.get('id');

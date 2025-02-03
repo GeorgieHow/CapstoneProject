@@ -50,17 +50,20 @@
     color: inherit;
   }
 
-  .btn-primary {
-    padding: 10px;
+  button {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
     background-color: #333;
     border: none;
     border-radius: 5px;
-    color: white;
-    font-size: 16px;
     cursor: pointer;
-    margin: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
+button:hover {
     background-color: #428953;
 }

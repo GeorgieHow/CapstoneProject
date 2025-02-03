@@ -6,6 +6,10 @@
 
 <div class="separator"></div>
 
+<div>
+    <button *ngIf="isLoggedIn" [routerLink]="['/add-menu-item', restaurant?.id]">Add New Menu Item</button>
+</div>
+
 <div class="menu">
     <h1>Menu</h1>
     <ul>

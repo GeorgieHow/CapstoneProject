@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../model/menu-item';
@@ -18,5 +18,10 @@ export class MenuDetailsService {
 
   getMenuItemsByRestaurantId(id: number): Observable<MenuItem[]> {
     return this.http.get<MenuItem[]>(`${this.apiUrl}/restaurant/${id}`);
+  }
+
+  addMenuItem(menuItem: MenuItem, restaurantId: number): Observable<MenuItem> {
+    const params = new HttpParams().set('restaurantId', restaurantId.toString());
+    return this.http.post<MenuItem>(this.apiUrl, menuItem, { params });
   }
 }

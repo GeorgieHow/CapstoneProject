@@ -13,6 +13,7 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { LoginComponent } from './login/login.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
 import { EditRestaurantComponent } from './edit-restaurant/edit-restaurant.component';
+import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditRestaurantComponent } from './edit-restaurant/edit-restaurant.compo
     LoginComponent,
     AddRestaurantComponent,
     EditRestaurantComponent,
+    AddMenuItemComponent,
   ],
   imports: [
     BrowserModule,
