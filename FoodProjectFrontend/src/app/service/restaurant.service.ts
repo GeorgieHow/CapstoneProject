@@ -24,6 +24,10 @@ export class RestaurantService {
     return this.http.post<Restaurant>(this.apiUrl, restaurant);
   }
   
+  editRestaurant(restaurant: Restaurant): Observable<Restaurant> {
+    return this.http.put<Restaurant>(`${this.apiUrl}/${restaurant.id}`, restaurant);
+  }
+
   deleteRestaurant(id: number): Observable<Restaurant> {
     return this.http.delete<Restaurant>(`${this.apiUrl}/${id}`);
   }

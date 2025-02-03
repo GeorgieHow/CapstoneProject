@@ -34,7 +34,10 @@ public class RestaurantService {
             restaurant.setName(restaurantDetails.getName());
             restaurant.setLocation(restaurantDetails.getLocation());
             restaurant.setRating(restaurantDetails.getRating());
-            restaurant.setMenu(restaurantDetails.getMenu());
+            
+            if (restaurantDetails.getMenu() != null && !restaurantDetails.getMenu().isEmpty()) {
+            	restaurant.setMenu(restaurantDetails.getMenu());
+            }
             return restaurantRepo.save(restaurant); 
         });
     }

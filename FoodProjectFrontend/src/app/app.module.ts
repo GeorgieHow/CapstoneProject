@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 import { LoginComponent } from './login/login.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
+import { EditRestaurantComponent } from './edit-restaurant/edit-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AddRestaurantComponent } from './add-restaurant/add-restaurant.componen
     RestaurantDetailsComponent,
     LoginComponent,
     AddRestaurantComponent,
+    EditRestaurantComponent,
   ],
   imports: [
     BrowserModule,
