@@ -8,6 +8,7 @@ import { authGuard } from './service/auth.guard';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
 import { EditRestaurantComponent } from './edit-restaurant/edit-restaurant.component';
 import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
+import { EditMenuItemComponent } from './edit-menu-item/edit-menu-item.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:'restaurants/:id', component:RestaurantDetailsComponent},
   {path:'add-restaurant', component: AddRestaurantComponent, canActivate: [authGuard]},
   {path:'edit-restaurant/:id', component: EditRestaurantComponent, canActivate: [authGuard]},
-  {path:'add-menu-item/:resterauntId', component: AddMenuItemComponent, canActivate: [authGuard]}
+  {path:'add-menu-item/:restaurantId', component: AddMenuItemComponent, canActivate: [authGuard]},
+  {path:'edit-menu-item/:id/:restaurantId', component: EditMenuItemComponent, canActivate: [authGuard]}
 ];
 
 @NgModule({

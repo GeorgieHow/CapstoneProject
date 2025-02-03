@@ -20,7 +20,7 @@ export class AddMenuItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.restaurantId = Number(this.route.snapshot.paramMap.get('resterauntId'));
+    this.restaurantId = Number(this.route.snapshot.paramMap.get('restaurantId'));
   }
 
   onSubmit(form: NgForm) {
