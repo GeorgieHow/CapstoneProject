@@ -1,5 +1,5 @@
 FROM node:alpine
-RUN npm install -g angular/cli
+RUN npm install -g @angular/cli
 WORKDIR /usr/src/app
 COPY . ./usr/src/app
 COPY package.json .
