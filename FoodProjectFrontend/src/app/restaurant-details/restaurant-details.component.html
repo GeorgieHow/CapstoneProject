@@ -16,6 +16,8 @@
         <li *ngFor="let item of menuItems">
             <span>{{ item.name }}</span>
             <span class="price">{{ item.price | currency:'GBP' }}</span>
+            <button *ngIf="isLoggedIn">Edit</button>
+            <button *ngIf="isLoggedIn" (click)="deleteMenuItem(item.id)">Delete</button>
         </li>
     </ul>
 </div>

@@ -24,4 +24,8 @@ export class MenuDetailsService {
     const params = new HttpParams().set('restaurantId', restaurantId.toString());
     return this.http.post<MenuItem>(this.apiUrl, menuItem, { params });
   }
+
+  deleteMenuItem(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

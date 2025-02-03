@@ -41,6 +41,14 @@ export class RestaurantDetailsComponent implements OnInit {
       });
     }
   }
+  
+  deleteMenuItem(menuItemId: number | undefined): void {
+    if (menuItemId !== undefined) {
+      this.menuDetailsService.deleteMenuItem(menuItemId).subscribe(() => {
+        this.menuItems = this.menuItems.filter(item => item.id !== menuItemId);
+      });
+    }
+  }
 
   goBack() {
     this.router.navigate(['/restaurants']);

@@ -36,7 +36,6 @@ export class AddMenuItemComponent implements OnInit {
 
     this.menuService.addMenuItem(newItem, this.restaurantId).subscribe(
       () => {
-        alert(newItem.restaurant_id);
         this.router.navigate(['/restaurants', this.restaurantId]);
       },
       (error) => {
